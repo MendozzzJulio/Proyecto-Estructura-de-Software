@@ -17,7 +17,8 @@ class AgendaContactos:
             ruta_archivo(str, opcional); Ruta al archivo para almacenar contactos  
         """
 
-        self.contactos = []
+        self.contacto = Contacto
+        self.agenda = []
         self.ruta_archivo = ruta_archivo
         # Intentar cargar contactos existentes si el archivo existe
         self.cargar()

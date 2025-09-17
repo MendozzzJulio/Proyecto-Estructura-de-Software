@@ -3,11 +3,6 @@ import os
 from contacto import Contacto
 
 class AgendaContactos:
-    """Esta clase gestiona una coleccion de contactos
-    atributos:
-        contactos(list): lista de objetos Contacto
-        ruta_archivo(str): ruta del archivo JSON para guardar los contactos
-    """
 
     def __init__(self, ruta_archivo='contactos.json'):
 
@@ -24,14 +19,13 @@ class AgendaContactos:
 
     def agregar(self, contacto):
         """
-        Añade un nuevo contacto a la agenda.
+        Añade un nuevo contacto a la agenda y la ordena alfabéticamente por nombre.
         """
-        #Verificar si el contacto ya existe por nombre
         for c in self.contactos:
             if c.nombre.lower() == contacto.nombre.lower():
                 return False  # Contacto ya existe
-        # Si no existe, añadir el nuevo contacto
         self.contactos.append(contacto)
+        self.contactos.sort(key=lambda c: c.nombre.lower())
         return True
     
     def buscar(self, termino):
@@ -87,9 +81,9 @@ class AgendaContactos:
     
     def listar(self):
         """
-        Retorna una lista de todos los contactos en la agenda
+        Retorna una lista de todos los contactos en la agenda, ordenados alfabéticamente por nombre
         """
-        return self.contactos
+        return sorted(self.contactos, key=lambda c: c.nombre.lower())
     
 
     def guardar(self): 

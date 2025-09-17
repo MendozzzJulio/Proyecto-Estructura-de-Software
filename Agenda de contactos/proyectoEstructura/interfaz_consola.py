@@ -25,7 +25,7 @@ class InterfazConsola:
 
     
     def ejecutar(self):
-        # Ejecuta el bucle principal esta carechimba interfaz
+        # Ejecuta el bucle principal de la interfaz
         while True:
             self.mostrar_menu()
             opcion = input("Selecione una opción: ")
@@ -42,29 +42,25 @@ class InterfazConsola:
             elif opcion == "6":
                 self.guardar_cambios()
             elif opcion == "0":
-                # Consulta si quiere guardar
                 if input("¿Desea guardar los cambios antes de salir?(s/n)").lower() == "s":
                     self.guardar_cambios()
                 print("Saliendo de la agenda. ¡Hasta luego!")
                 break
             else:
-                print("Opción no válida. Por favor intente de nuevo.")
-            
+                print("Opción no válida. Por favor intente de nuevo.")     
 
     def agregar_contacto(self):
-                # Solicita datos al user y agrega el madafokin nuevo contacto 
-                print ("\n----Agregar nuevo contacto---")
-                nombre = input("Ingrese el nombre del contacto: ")
-                telefono = input("Ingrese el telefono del contacto: ")
-                email = input("Ingrese el email del contacto (opcional): ")
-                direccion = input("Ingrese la direccion del contacto (opcional): ")
-
-                nuevo_contacto = Contacto(nombre, telefono, email, direccion)
-
-                if self.agenda.agregar(nuevo_contacto):
-                    print(f"Contacto {nombre} agregado exitosamente.")
-                else:
-                    print(f"El contacto {nombre} ya exite en su agenda")
+        # Solicita datos al usuario y agrega el nuevo contacto
+        print("\n----Agregar nuevo contacto---")
+        nombre = input("Ingrese el nombre del contacto: ")
+        telefono = input("Ingrese el telefono del contacto: ")
+        email = input("Ingrese el email del contacto (opcional): ")
+        direccion = input("Ingrese la direccion del contacto (opcional): ")
+        nuevo_contacto = Contacto(nombre, telefono, email, direccion)
+        if self.agenda.agregar(nuevo_contacto):
+            print(f"Contacto {nombre} agregado exitosamente.")
+        else:
+            print(f"El contacto {nombre} ya existe en su agenda")
             
     def buscar_contacto(self):
                 # Busca y muestra contactos segun el termino de busqueda

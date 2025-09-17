@@ -9,7 +9,7 @@ class AgendaContactos:
         ruta_archivo(str): ruta del archivo JSON para guardar los contactos
     """
 
-    def init(self, ruta_archivo='contactos.json'):
+    def __init__(self, ruta_archivo='contactos.json'):
 
         """
         inicializa nueva agenda de contactos
@@ -30,9 +30,9 @@ class AgendaContactos:
         for c in self.contactos:
             if c.nombre.lower() == contacto.nombre.lower():
                 return False  # Contacto ya existe
-            # Si no existe, añadir el nuevo contacto
-            self.contactos.append(contacto)
-            return True
+        # Si no existe, añadir el nuevo contacto
+        self.contactos.append(contacto)
+        return True
     
     def buscar(self, termino):
         """
@@ -83,14 +83,13 @@ class AgendaContactos:
             if contacto.nombre.lower() == nombre.lower():
                 del self.contactos[i]
                 return True
-        return 
+        return False
     
     def listar(self):
         """
-            Retorna una lista de todos los contactos en la agenda
+        Retorna una lista de todos los contactos en la agenda
         """
-
-        print(self.contactos)
+        return self.contactos
     
 
     def guardar(self): 
@@ -135,7 +134,7 @@ class AgendaContactos:
                     dato.get('email', '  '),
                     dato.get('direccion', '  ')
                 )
-                self.append(contacto)
+                self.contactos.append(contacto)
             return True
         except Exception as e:
             print(f"Error al cargar contactos: {e}")

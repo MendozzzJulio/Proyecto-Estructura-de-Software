@@ -82,39 +82,37 @@ class InterfazConsola:
             
 
     def actualizar_contacto(self):
-                # Actualiza un contacto que existe 
-                print("\n ---Actualizar contacto----")
-                nombre = input("Nombre del contacto a actualizar: ")
+        # Actualiza un contacto que existe 
+        print("\n ---Actualizar contacto----")
+        nombre = input("Nombre del contacto a actualizar: ")
 
-                # Buscar si existe el contacto
-                resultados = self.agenda.buscar(nombre)
-                contactp_encontrado = None
+        # Buscar si existe el contacto
+        resultados = self.agenda.buscar(nombre)
+        contacto_encontrado = None
 
-                for contacto in resultados:
-                    if contacto.nombre.lower() == nombre.lower():
-                        contacto_encontrado = contacto
-                        break
-                if contacto_encontrado:
-                    print("\nContacto encontrado: \n{contacto_encontrado}")
-                    print("\nIngrese los nuevos datos (deje en blanco para no modificar): ")
+        for contacto in resultados:
+            if contacto.nombre.lower() == nombre.lower():
+                contacto_encontrado = contacto
+                break
+        if contacto_encontrado:
+            print(f"\nContacto encontrado: \n{contacto_encontrado}")
+            print("\nIngrese los nuevos datos (deje en blanco para no modificar): ")
 
-                    nuevos_nombre = input(f"Nuevo nombre [{contacto_encontrado.nombre}]: ")
-                    nuevo_telefono = input(f"Nuevo telefono [{contacto_encontrado.telefono}]: ")
-                    nuevo_email = input(f"Nuevo email [{contacto_encontrado.email}]: ")
-                    nueva_direccion = input(f"Nueva dirección [{contacto_encontrado.direccion}]: ")
+            nuevo_nombre = input(f"Nuevo nombre [{contacto_encontrado.nombre}]: ")
+            nuevo_telefono = input(f"Nuevo telefono [{contacto_encontrado.telefono}]: ")
+            nuevo_email = input(f"Nuevo email [{contacto_encontrado.email}]: ")
+            nueva_direccion = input(f"Nueva dirección [{contacto_encontrado.direccion}]: ")
 
+            # Si el user dejo en blanco un campo en blando mantengo el valor 
+            nuevo_nombre = None if nuevo_nombre == "" else nuevo_nombre
+            nuevo_telefono = None if nuevo_telefono == "" else nuevo_telefono   
+            nuevo_email = None if nuevo_email == "" else nuevo_email
+            nueva_direccion = None if nueva_direccion == "" else nueva_direccion
 
-                    # Si el user dejo en blanco un campo en blando mantengo el valor 
-
-                    nuevo_nombre = None if nuevo_nombre == "" else nuevo_nombre
-                    nuevo_telefono = None if nuevo_telefono == "" else nuevo_telefono   
-                    nuevo_email = None if nuevo_email == "" else nuevo_email
-                    nueva_direccion = None if nueva_direccion == "" else nueva_direccion
-
-                    if self.agenda.actualizar(contacto_encontrado.nombre, nuevo_nombre, nuevo_telefono, nuevo_email, nueva_direccion):
-                        print("Contacto actualizado exitosamente.")
-                    else:
-                        print("No se encontró un contacto con el nombre {nombre}.")
+            if self.agenda.actualizar(contacto_encontrado.nombre, nuevo_nombre, nuevo_telefono, nuevo_email, nueva_direccion):
+                print("Contacto actualizado exitosamente.")
+            else:
+                print(f"No se encontró un contacto con el nombre {nombre}.")
 
 
     
